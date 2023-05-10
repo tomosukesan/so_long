@@ -6,7 +6,10 @@
 #    By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:57:05 by ttachi            #+#    #+#              #
-#    Updated: 2023/05/10 10:57:09 by ttachi           ###   ########.fr        #
+#    Updated: 2023/05/10 11:00:03 by ttachi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = so_long
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
