@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:57:05 by ttachi            #+#    #+#              #
-#    Updated: 2023/05/10 20:43:01 by ttachi           ###   ########.fr        #
+#    Updated: 2023/05/11 09:08:05 by ttachi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ CFLAGS = -Wall -Werror -Wextra
 MLX = -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
 LIBFT = libft/libft.a
 
-SRCS = test.c
+SRCS = test.c \
+		gnl/get_next_line.c \
+		gnl/get_next_line_utils.c
 
 OBJS = $(SRCS:%.c=%.o)
 
@@ -35,4 +37,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-	
