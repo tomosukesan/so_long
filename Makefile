@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+         #
+#    By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:57:05 by ttachi            #+#    #+#              #
-#    Updated: 2023/05/11 09:08:05 by ttachi           ###   ########.fr        #
+#    Updated: 2023/05/11 17:45:27 by ttachi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,10 @@ CFLAGS = -Wall -Werror -Wextra
 MLX = -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
 LIBFT = libft/libft.a
 
-SRCS = test.c \
-		gnl/get_next_line.c \
-		gnl/get_next_line_utils.c
+SRCS = so_long.c \
+		so_long_utils.c \
+		create_strs_map.c \
+		getstr_from_mapfile.c
 
 OBJS = $(SRCS:%.c=%.o)
 
@@ -35,5 +36,8 @@ fclean: clean
 	$(RM) $(NAME)
 	make fclean -C ./libft
 re: fclean all
+
+debug: CFLAGS += -g -fsanitize=address
+debug: re
 
 .PHONY: all clean fclean re

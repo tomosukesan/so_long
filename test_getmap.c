@@ -1,47 +1,66 @@
 #include "so_long.h"
 
-char	*get_mapfile(char *map_file)
+static char *get_str_map(int fd, char *line, size_t width)
 {
-	int		fd;
-	char	*result;
-	char	*line;
+	char *result;
 
-	fd = open(map_file, O_RDONLY);
-	// openの失敗処理：あっているか確認
-	if (fd == -1)
-		ft_error("Failed to open file.\n");
-	result = (char *)malloc(sizeof(char) * 1);
-	if (result == NULL)
-		ft_error("Failed to allocate memory.\n");
-	result[0] = '\0';
-	line = get_next_line(fd);
+	result = ft_strjoin("", line);
 	while (line != NULL)
 	{
-		// 列の長さが違う場合の処理
-		// 一行目の長さを取得して、それ以降の行の長さと比較
-		result = ft_strjoin(result, line);
 		free(line);
 		line = get_next_line(fd);
+		// gnlの失敗は？ // 失敗も終了もNULLだからむずいな
+		// でも終了はNULLかつ
+		result = ft_strjoin(result, line);
+		if (ft_strlen(line) != width)		// 最後の１回は許す？
+			ft_error("Invalid map: It is not rectangular.\n");
 	}
 	// mapファイルの最後までgnlが読み込んだ判断は？ gnlの途中終了をどう判断する？
-	free(line);
+	free(line);		// line == NULLの時にwhile文を抜けている..NULLなのにfree要る？
+	return (result);	// errorがあったらNULLで返す？その時はget_mapfileで
+}
+
+static char	*get_mapfile(char *map_file)
+{
+	int		fd;
+	char	*line;
+	char	*result;
+	size_t	width;
+
+	fd = open(map_file, O_RDONLY);
+	if (fd == -1)
+		ft_error("Failed to open file.\n");
+	line = get_next_line(fd);
+	// gnlの失敗は？
+	width = ft_strlen(line);
+	result = get_str_map(fd, line, width);
 	close(fd);
 	return (result);
 }
 
+static char **create_map(char *mapfile)
+{
+	char			**map;
+ 	unsigned int	*map_status;
+
+	ft_bzero(map_status, 0);
+	// 先ずはfileをstrに
+		// 指定された５つの文字で、過不足なく構成されているか　→ map_statusを使用
+	// strをstrsに -> ft_split(line, '\n');
+		// 辺には１だけ check_wall();
+		// back_trackで有効か判断
+	// error処理
+
+	return (map);
+}
+
+
 int	main(int argc, char *argv[])
 {
-	// 現状、mapの構成は.ber拡張子ファイルに格納
-	// 二次元配列で確保したい
-	int				fd;
-	char			*line;
 	char			**map;
-	unsigned int	*map_status;
 
 	if (argc == 2)
 		ft_error("Invalid argument.\n");
-	line = get_mapfile(argv[1]);
-	ft_bzero(map_status, 0);
-	map = create_map(line, map_status);
+	map = create_map(argv[1]);
 	return (0);
 }

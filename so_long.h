@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:46:31 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/11 11:45:23 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/11 18:20:59 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <stdbool.h>
 # include <mlx.h>
 # include "./libft/libft.h"
-# include "./get_next_line/get_next_line.h"
 
+# define BUFFER_SIZE 42
 # define EMPTY 0
 # define WALL 1
 # define ITEM 2
@@ -33,6 +35,8 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+char	**create_strs_map(char *mapfile);
+char	*getstr_from_mapfile(char *mapfile, unsigned int map_status[5]);
 void	ft_error(char *str);
 
 #endif
