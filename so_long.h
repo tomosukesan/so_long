@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:46:31 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/12 14:33:12 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/12 15:08:38 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdbool.h>
-# include <mlx.h>
+# include "./mlx/mlx.h"
 # include "./libft/libft.h"
 
 # define BUFFER_SIZE 42
