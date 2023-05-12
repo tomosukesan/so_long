@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:48:46 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/12 09:07:35 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/12 14:19:31 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	*so_long(char **map)
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "so_long");
+	ft_bzero(&img, sizeof(t_data));
 	if (mlx_win == NULL)
 	{
 		free(map);
@@ -32,12 +33,12 @@ static void	*so_long(char **map)
 
 int	main(int argc, char *argv[])
 {
-	char	**map;
+	char	**map = NULL;
 
 	if (argc != 2)
 		ft_error("Invalid argument.\n");
 	map = create_strs_map(argv[1]);
 	// mapを描画
-
+	so_long(map);
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   getstr_from_mapfile.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:56:08 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/11 23:43:04 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/12 13:43:32 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 static char	*finish_line(char *str, char *buf, ssize_t word_count)
 {
@@ -54,8 +54,7 @@ static char	*get_line(int fd)
 	}
 	return (NULL);
 }
-
-static bool	check_char(char *str, unsigned int map_status[5])
+static bool	check_char(char *str, unsigned int *map_status)
 {
 	size_t	i;
 
@@ -81,19 +80,21 @@ static bool	check_char(char *str, unsigned int map_status[5])
 	return (true);
 }
 
-static void	check_count(unsigned int map_status[5])
+static void	check_count(unsigned int *map_status)
 {
 	if (map_status[ITEM] == 0)
 		ft_error("Invalid map. It is consist of no item.\n");
 	else if (map_status[EXIT] != 1)
-		ft_error("Invalid map. \
-				It is consist of no exit or more than one exit.\n");
+	{
+		ft_putnbr_fd(map_status[EXIT], 1);
+		ft_putchar_fd('\n', 1);
+		ft_error("Invalid map about exit.\n");
+	}
 	else if (map_status[PLAYER] != 1)
-		ft_error("Invalid map. \
-				It is consist of no player or more than one player.\n");
+		ft_error("Invalid map about player.\n");
 }
 
-char	*getstr_from_mapfile(char *mapfile, unsigned int map_status[5])
+char	*getstr_from_mapfile(char *mapfile, unsigned int *map_status)
 {
 	int		fd;
 	char	*str;

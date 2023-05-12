@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+         #
+#    By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:57:05 by ttachi            #+#    #+#              #
-#    Updated: 2023/05/12 09:01:34 by ttachi           ###   ########.fr        #
+#    Updated: 2023/05/12 13:23:52 by ttachi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ LIBFT = libft/libft.a
 
 SRCS = so_long.c \
 		so_long_utils.c \
-		create_strs_map.c \
-		getstr_from_mapfile.c \
+		map/create_strs_map.c \
+		map/getstr_from_mapfile.c \
 		draw_map.c
 
 OBJS = $(SRCS:%.c=%.o)
