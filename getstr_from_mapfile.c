@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getstr_from_mapfile.c                             :+:      :+:    :+:   */
+/*   getstr_from_mapfile.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:56:08 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/11 15:03:37 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/11 23:43:04 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,8 @@ static bool	check_char(char *str, unsigned int map_status[5])
 	i = 0;
 	while (str[i] != '\0')
 	{
-		
 		if (str[i] == '0')
-			map_status[EMPTY]++; 
+			map_status[EMPTY]++;
 		else if (str[i] == '1')
 			map_status[WALL]++;
 		else if (str[i] == 'C')
@@ -82,6 +81,18 @@ static bool	check_char(char *str, unsigned int map_status[5])
 	return (true);
 }
 
+static void	check_count(unsigned int map_status[5])
+{
+	if (map_status[ITEM] == 0)
+		ft_error("Invalid map. It is consist of no item.\n");
+	else if (map_status[EXIT] != 1)
+		ft_error("Invalid map. \
+				It is consist of no exit or more than one exit.\n");
+	else if (map_status[PLAYER] != 1)
+		ft_error("Invalid map. \
+				It is consist of no player or more than one player.\n");
+}
+
 char	*getstr_from_mapfile(char *mapfile, unsigned int map_status[5])
 {
 	int		fd;
@@ -93,10 +104,9 @@ char	*getstr_from_mapfile(char *mapfile, unsigned int map_status[5])
 	str = get_line(fd);
 	if (str == NULL)
 		ft_error("Failed to malloc allocated.\n");
-	// map_statusに情報を埋めながら、Error確認
 	if (check_char(str, map_status) == false)
 		ft_error("Invalid map. It is consist of Invalid character.\n");
-	//
+	check_count(map_status);
 	close(fd);
 	return (str);
 }

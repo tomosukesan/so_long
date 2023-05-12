@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:46:31 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/11 18:20:59 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/12 11:46:54 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 # define ITEM 2
 # define EXIT 3
 # define PLAYER 4
+# define IMG_BG ""
+# define IMG_WALL ""
+# define IMG_ITME ""
+# define IMG_EXIT ""
+# define IMG_PLAYER ""
 
 typedef struct	s_data {
 	void	*img;
@@ -37,6 +42,7 @@ typedef struct	s_data {
 
 char	**create_strs_map(char *mapfile);
 char	*getstr_from_mapfile(char *mapfile, unsigned int map_status[5]);
+void	draw_map(char **map, void *mlx, void *mlx_win, t_data img);
 void	ft_error(char *str);
 
 #endif
