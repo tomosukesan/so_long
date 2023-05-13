@@ -6,7 +6,7 @@
 /*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:48:46 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/13 21:27:24 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/13 21:42:27 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	*so_long(char **map)
 	}
 	// signal or eventを設定
 	mlx_key_hook(mlx.win, key_hook, &mlx);
-	mlx_hook(mlx.win, 33, 1L << 17, click_close, &mlx);
+	mlx_hook(mlx.win, 17, 0, click_close, &mlx);
+	// mlx_hook(mlx.win, 33, 1L << 17, click_close, &mlx);
 	draw_map(map, &mlx);
 	// 失敗した時はmapのfreeとwindowを閉じる処理を。
 	mlx_loop(mlx.ptr);
