@@ -6,7 +6,7 @@
 /*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:46:31 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/12 15:08:38 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/13 19:06:29 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,17 @@
 # define IMG_PLAYER "img/beetle.xpm"
 
 typedef struct	s_data {
+	void	*ptr;
+	void	*win;
 	void	*img;
 }				t_data;
 
 char	**create_strs_map(char *mapfile);
 char	*getstr_from_mapfile(char *mapfile, unsigned int *map_status);
+void	check_count(unsigned int *map_status);
+bool	check_char(char *str, unsigned int *map_status);
+bool	is_rectanglar(char **map);
+
 void	draw_map(char **map, void *mlx, void *mlx_win, t_data img);
 void	ft_error(char *str);
 

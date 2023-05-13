@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   create_strs_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:51:04 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/12 14:17:10 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/13 07:38:57 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include <stdio.h>
+
 char **create_strs_map(char *mapfile)
 {
 	char			*line = NULL;
@@ -24,6 +24,8 @@ char **create_strs_map(char *mapfile)
 	if (map == NULL)
 		ft_error("Failed to malloc allocated.\n");
 	free(line);
+	if (is_rectanglar(map) == false)
+		ft_error("Invalid map. It is not rectanglar.\n");
 	// 	// 辺には１だけ check_wall();
 	// 	// back_trackで有効か判断
 	// // error処理

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:48:46 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/12 14:19:31 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/13 19:26:10 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 static void	*so_long(char **map)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_data	mlx;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "so_long");
-	ft_bzero(&img, sizeof(t_data));
-	if (mlx_win == NULL)
+	//mlx_initは失敗するんだっけ？
+	mlx.img = mlx_init();
+	// windowの大きさ設定
+	mlx.win = mlx_new_window(mlx.ptr, 1920, 1080, "so_long");
+	// signal or eventを設定
+
+	mlx_key_hook(mlx.win, key_hook, NULL);
+	ft_bzero(mlx.img, sizeof(t_data));
+	if (mlx.win == NULL)
 	{
 		free(map);
 		ft_error("mlx_new_window\n");
 	}
-	draw_map(map, mlx, mlx_win, img);
+	draw_map(map, mlx.ptr, mlx.win, mlx.img);
 	// 失敗した時はmapのfreeとwindowを閉じる処理を。
-	return (mlx);
+	return (mlx.ptr);
 }
 
 int	main(int argc, char *argv[])
