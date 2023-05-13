@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+         #
+#    By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:57:05 by ttachi            #+#    #+#              #
-#    Updated: 2023/05/13 19:01:22 by ttachi           ###   ########.fr        #
+#    Updated: 2023/05/13 19:55:52 by ttachi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-#MLX = -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
-MLX = -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit
+MLX = -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
+# MLX = -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit
+
 LIBFT = libft/libft.a
 
 SRCS = so_long.c \
