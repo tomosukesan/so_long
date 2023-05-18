@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+         #
+#    By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:57:05 by ttachi            #+#    #+#              #
-#    Updated: 2023/05/13 19:55:52 by ttachi           ###   ########.fr        #
+#    Updated: 2023/05/17 05:49:10 by ttachi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-MLX = -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
-# MLX = -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit
+#MLX = -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
+ MLX = -L/usr/X11R6/lib  -lmlx -lX11 -lXext -framework OpenGL -framework AppKit
 
 LIBFT = libft/libft.a
 
@@ -24,8 +24,10 @@ SRCS = so_long.c \
 		map/create_strs_map.c \
 		map/getstr_from_mapfile.c \
 		map/check_map.c \
+		map/map_utils.c \
 		draw_map.c \
-		key_hook.c
+		key_hook.c \
+		move_player.c
 
 OBJS = $(SRCS:%.c=%.o)
 

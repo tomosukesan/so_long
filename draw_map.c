@@ -3,25 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:00:59 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/13 20:45:42 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/17 05:44:53 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
-void	draw_map(char **map, t_data *mlx)
+static void	process_player(t_data *mlx, t_player *player, size_t x, size_t y)
+{
+	int		width;
+	int		height;
+
+	width = 32;
+	height = 32;
+	mlx->img = mlx_xpm_file_to_image(mlx->ptr, IMG_PLAYER, &width, &height);
+	player->x = x;
+	player->y = y;
+}
+
+int	draw_map(char **map, t_data *mlx, t_player *player)
 {
 	int		width;
 	int		height;
 	size_t	y;
 	size_t	x;
 
-	width = 400;
-	height = 380;
+	width = 32;
+	height = 32;
 	y = 0;
 	while (map[y] != NULL)
 	{
@@ -37,20 +48,17 @@ void	draw_map(char **map, t_data *mlx)
 			else if (map[y][x] == 'E')
 				mlx->img = mlx_xpm_file_to_image(mlx->ptr, IMG_EXIT, &width, &height);
 			else if (map[y][x] == 'P')
-				mlx->img = mlx_xpm_file_to_image(mlx->ptr, IMG_PLAYER, &width, &height);
+				process_player(mlx, player, x, y);
 			if (mlx->img == NULL)
 			{
 				free(map);
 				ft_error("mlx_new_image\n");
 			}
-			x++;
-			mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, x * 40, y * 40);
+			mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img, x * 32, y * 32);
 			mlx_destroy_image(mlx->ptr, mlx->img);
+			x++;
 		}
 		y++;
 	}
-
-	// img.img = mlx_xpm_file_to_image(mlx, "img/watermelon.xpm", &width, &height);
-	// img.img = mlx_xpm_file_to_image(mlx, "img/mountains.xpm", &width, &height);
-	// img.img = mlx_xpm_file_to_image(mlx, "img/beetle.xpm", &width, &height);
+	return (0);
 }
