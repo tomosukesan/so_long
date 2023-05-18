@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:46:31 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/18 15:35:57 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/18 17:43:51 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,34 @@
 # define IMG_ITEM "img/coin1.xpm"
 # define IMG_EXIT "img/dragon.xpm"
 # define IMG_PLAYER "img/player_front.xpm"
+// school
+# define ESC 53
+# define UP 13
+# define DOWN 2
+# define RIGHT 1
+# define LEFT 0
+
+/* // home
+# define ESC 65307
 # define UP 'w'
 # define DOWN 's'
 # define RIGHT 'd'
 # define LEFT 'a'
+*/
+typedef struct	s_player{
+	int		x;
+	int		y;
+	int		count;
+	int		leftover_item;
+	bool	complete;
+}				t_player;
 
 typedef struct	s_data {
-	void	*ptr;
-	void	*win;
-	void	*img;
+	void		*ptr;
+	void		*win;
+	void		*img;
+	t_player	player;
 }				t_data;
-
-typedef struct	s_player{
-	size_t	x;
-	size_t	y;
-	size_t	count;
-	size_t	item;
-}				t_player;
 
 // map
 char	**create_strs_map(char *mapfile);
@@ -63,6 +74,10 @@ int		cal_height(char **map);
 // draw
 int		draw_map(char **map, t_data *mlx, t_player *player);
 int		key_hook(int keycode, t_data *mlx, char **map, t_player *player);
+
+
+// move
+void	move_player(int keycode, t_data *mlx, char **map, t_player *player);
 
 // error
 void	ft_error(char *str);

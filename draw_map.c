@@ -3,19 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:00:59 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/17 05:44:53 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/18 17:35:29 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void	process_item(t_data *mlx, t_player *player)
+{
+	int	width;
+	int	height;
+
+	width = 32;
+	height = 32;
+	mlx->img = mlx_xpm_file_to_image(mlx->ptr, IMG_ITEM, &width, &height);
+	++(player->leftover_item);	
+}
+
 static void	process_player(t_data *mlx, t_player *player, size_t x, size_t y)
 {
-	int		width;
-	int		height;
+	int	width;
+	int	height;
 
 	width = 32;
 	height = 32;
@@ -44,7 +55,7 @@ int	draw_map(char **map, t_data *mlx, t_player *player)
 			else if (map[y][x] == '1')
 				mlx->img = mlx_xpm_file_to_image(mlx->ptr, IMG_WALL, &width, &height);
 			else if (map[y][x] == 'C')
-				mlx->img = mlx_xpm_file_to_image(mlx->ptr, IMG_ITEM, &width, &height);
+				process_item(mlx, player);
 			else if (map[y][x] == 'E')
 				mlx->img = mlx_xpm_file_to_image(mlx->ptr, IMG_EXIT, &width, &height);
 			else if (map[y][x] == 'P')
