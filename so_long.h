@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 12:46:31 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/18 17:43:51 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/24 21:52:12 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,36 @@
 #include <stdio.h>	// delete
 
 # define BUFFER_SIZE 42
-# define EMPTY 0
-# define WALL 1
-# define ITEM 2
-# define EXIT 3
-# define PLAYER 4
+# define EMPTY '0'
+# define WALL '1'
+# define ITEM 'C'
+# define EXIT 'E'
+# define PLAYER 'P'
+# define EMPTY_INDEX 0
+# define WALL_INDEX 1
+# define ITEM_INDEX 2
+# define EXIT_INDEX 3
+# define PLAYER_INDEX 4
 # define IMG_BG "img/background.xpm"
 # define IMG_WALL "img/sea.xpm"
 # define IMG_ITEM "img/coin1.xpm"
 # define IMG_EXIT "img/dragon.xpm"
 # define IMG_PLAYER "img/player_front.xpm"
+/*
 // school
 # define ESC 53
 # define UP 13
 # define DOWN 2
 # define RIGHT 1
 # define LEFT 0
-
-/* // home
+*/
+// home
 # define ESC 65307
 # define UP 'w'
 # define DOWN 's'
 # define RIGHT 'd'
 # define LEFT 'a'
-*/
+
 typedef struct	s_player{
 	int		x;
 	int		y;
@@ -59,7 +65,8 @@ typedef struct	s_data {
 	void		*ptr;
 	void		*win;
 	void		*img;
-	t_player	player;
+	char		**map;
+	t_player	*player;
 }				t_data;
 
 // map
@@ -72,14 +79,14 @@ int		cal_width(char **map);
 int		cal_height(char **map);
 
 // draw
-int		draw_map(char **map, t_data *mlx, t_player *player);
-int		key_hook(int keycode, t_data *mlx, char **map, t_player *player);
-
+int		draw_map(t_data *mlx, char **map);
+int		key_hook(int keycode, t_data *mlx);
 
 // move
-void	move_player(int keycode, t_data *mlx, char **map, t_player *player);
+void	move_player(t_data *mlx, char **map, t_player *player, int direction[4]);
 
 // error
 void	ft_error(char *str);
+void	free_map(char **map);
 
 #endif

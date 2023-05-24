@@ -6,11 +6,11 @@
 /*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:56:08 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/13 06:55:51 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/24 21:56:32 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 static char	*finish_line(char *str, char *buf, ssize_t word_count)
 {
@@ -47,7 +47,6 @@ static char	*get_line(int fd)
 			return (finish_line(str, buf, word_count));
 		tmp = ft_strjoin(str, buf);
 		free(str);
-		str = NULL;
 		if (tmp == NULL)
 			ft_error("Failed to malloc allocated.\n");
 		str = tmp;

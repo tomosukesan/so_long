@@ -6,23 +6,23 @@
 /*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 06:53:40 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/13 07:39:07 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/24 17:33:43 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	check_count(unsigned int *map_status)
 {
-	if (map_status[ITEM] == 0)
+	if (map_status[ITEM_INDEX] == 0)
 		ft_error("Invalid map. It is consist of no item.\n");
-	else if (map_status[EXIT] != 1)
+	else if (map_status[EXIT_INDEX] != 1)
 	{
-		ft_putnbr_fd(map_status[EXIT], 1);
+		ft_putnbr_fd(map_status[EXIT_INDEX], 1);
 		ft_putchar_fd('\n', 1);
 		ft_error("Invalid map about exit.\n");
 	}
-	else if (map_status[PLAYER] != 1)
+	else if (map_status[PLAYER_INDEX] != 1)
 		ft_error("Invalid map about player.\n");
 }
 
@@ -34,15 +34,15 @@ bool	check_char(char *str, unsigned int *map_status)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '0')
-			map_status[EMPTY]++;
+			map_status[EMPTY_INDEX]++;
 		else if (str[i] == '1')
-			map_status[WALL]++;
+			map_status[WALL_INDEX]++;
 		else if (str[i] == 'C')
-			map_status[ITEM]++;
+			map_status[ITEM_INDEX]++;
 		else if (str[i] == 'E')
-			map_status[EXIT]++;
+			map_status[EXIT_INDEX]++;
 		else if (str[i] == 'P')
-			map_status[PLAYER]++;
+			map_status[PLAYER_INDEX]++;
 		else if (str[i] == '\n')
 			;
 		else

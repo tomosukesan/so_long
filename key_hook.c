@@ -3,27 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttachi <ttachi@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: ttachi <ttachi@student.42tokyo.ja>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 19:01:01 by ttachi            #+#    #+#             */
-/*   Updated: 2023/05/18 19:17:31 by ttachi           ###   ########.fr       */
+/*   Updated: 2023/05/24 21:57:55 by ttachi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_hook(int keycode, t_data *mlx, char **map, t_player *player)
+int	key_hook(int keycode, t_data *mlx)
 {
-	ft_putnbr_fd(player->leftover_item, 1);
-	puts("");
-	// printf("keycode: %d\n", keycode);
+	int	direction[4];
+
+	ft_bzero(direction, sizeof(int) * 4);
 	if (keycode == ESC)
 	{
-		mlx_destroy_window(mlx->ptr, mlx->win);
-		free(map);
+		if (mlx->ptr == NULL)
+			mlx_destroy_window(mlx->ptr, mlx->win);
+		free_map(mlx->map);
 		exit(0);
 	}
-	else if (keycode == LEFT || keycode == UP || keycode == DOWN || keycode == RIGHT)
-		move_player(keycode, mlx, map, player);
+	if (keycode == UP)
+		direction[0] = -1;
+	else if (keycode == DOWN)
+		direction[1] = 1;
+	else if (keycode == LEFT)
+		direction[2] = -1;
+	else if (keycode == RIGHT)
+		direction[3] = 1;
+	else
+		return (0);
+	move_player(mlx, mlx->map, mlx->player, direction);
 	return (0);
 }
